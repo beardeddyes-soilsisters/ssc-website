@@ -1,65 +1,82 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-[#fff8f6] text-[#5f4638]">
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center">
+        <div>
+          <p className="mb-3 inline-block rounded-full bg-rose-100 px-4 py-2 text-sm text-[#8a6558]">
+            Floral plant shop
           </p>
+
+          <h1 className="mb-6 text-5xl font-semibold leading-tight md:text-6xl">
+            The Soil Sisters Co
+          </h1>
+
+          <p className="mb-6 max-w-xl text-lg leading-8 text-[#7a6054]">
+            Where soil grows beauty and sparkle catches the light.
+          </p>
+
+          <p className="mb-8 max-w-xl text-base leading-7 text-[#7a6054]">
+            A soft, welcoming plant shop for beautiful greenery, thoughtful gifts,
+            and botanical charm.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/shop"
+              className="rounded-full bg-[#b7c7a5] px-6 py-3 font-medium text-white shadow-sm transition hover:opacity-90"
+            >
+              Shop Plants
+            </Link>
+
+            <Link
+              href="/contact"
+              className="rounded-full border border-rose-200 bg-white px-6 py-3 font-medium text-[#6b4f43] transition hover:bg-rose-50"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="rounded-[28px] border border-rose-200 bg-white p-8 shadow-lg">
+          <div className="rounded-[24px] bg-gradient-to-b from-rose-50 to-[#fffaf8] p-8">
+            <div className="mb-4 text-6xl">🌸🪴✨</div>
+            <h2 className="mb-3 text-2xl font-semibold text-[#6b4f43]">
+              Pastel floral plant shop
+            </h2>
+            <p className="leading-7 text-[#7a6054]">
+              This space will become your featured products section, seasonal
+              collections, and best sellers.
+            </p>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-2 text-xl font-semibold">Houseplants</h3>
+            <p className="text-[#7a6054]">
+              Easy-care favorites and statement greenery for every room.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-2 text-xl font-semibold">Gifts & Bundles</h3>
+            <p className="text-[#7a6054]">
+              Beautiful plant gifts with a soft floral brand style.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-2 text-xl font-semibold">Seasonal Beauty</h3>
+            <p className="text-[#7a6054]">
+              Rotating collections, decor, and fresh botanical charm.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
