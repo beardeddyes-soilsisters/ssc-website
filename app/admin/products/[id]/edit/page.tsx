@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdminLoggedIn } from "@/lib/admin-auth";
 import { createClient } from "@supabase/supabase-js";
+import EditProductForm from "@/components/admin/EditProductForm";
 
 type EditProductPageProps = {
   params: Promise<{
@@ -77,100 +78,7 @@ export default async function EditProductPage({
             </div>
           )}
 
-          <form action="/api/admin/products/update" method="post" className="space-y-4">
-            <input type="hidden" name="id" value={product.id} />
-
-            <input
-              name="slug"
-              defaultValue={product.slug}
-              placeholder="slug"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="name"
-              defaultValue={product.name}
-              placeholder="Product name"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="price"
-              type="number"
-              step="0.01"
-              defaultValue={product.price}
-              placeholder="Price"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="category"
-              defaultValue={product.category}
-              placeholder="Category"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="image"
-              defaultValue={product.image}
-              placeholder="Image URL"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <textarea
-              name="description"
-              defaultValue={product.description}
-              placeholder="Short description"
-              required
-              rows={3}
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <textarea
-              name="long_description"
-              defaultValue={product.long_description}
-              placeholder="Long description"
-              required
-              rows={5}
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="light"
-              defaultValue={product.light}
-              placeholder="Light needs"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="water"
-              defaultValue={product.water}
-              placeholder="Water needs"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <input
-              name="pet_friendly"
-              defaultValue={product.pet_friendly}
-              placeholder="Pet friendly?"
-              required
-              className="w-full rounded-2xl border border-rose-200 px-4 py-3"
-            />
-
-            <button
-              type="submit"
-              className="w-full rounded-full bg-[#b7c7a5] px-6 py-4 text-lg font-medium text-white transition hover:opacity-90"
-            >
-              Save Changes
-            </button>
-          </form>
+        <EditProductForm product={product} />
         </div>
       </div>
     </main>

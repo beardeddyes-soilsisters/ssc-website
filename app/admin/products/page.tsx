@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdminLoggedIn } from "@/lib/admin-auth";
 import { createClient } from "@supabase/supabase-js";
+import AddProductForm from "@/components/admin/AddProductForm";
 
 type ProductsPageProps = {
   searchParams: Promise<{
@@ -79,25 +80,7 @@ export default async function AdminProductsPage({
           <div className="rounded-[32px] border border-rose-200 bg-white p-8 shadow-md">
             <h2 className="mb-6 text-2xl font-semibold">Add Product</h2>
 
-            <form action="/api/admin/products/create" method="post" className="space-y-4">
-              <input name="slug" placeholder="slug (example: golden-pothos)" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="name" placeholder="Product name" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="price" type="number" step="0.01" placeholder="Price" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="category" placeholder="Category" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="image" placeholder="Image URL" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <textarea name="description" placeholder="Short description" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" rows={3} />
-              <textarea name="long_description" placeholder="Long description" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" rows={5} />
-              <input name="light" placeholder="Light needs" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="water" placeholder="Water needs" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-              <input name="pet_friendly" placeholder="Pet friendly?" required className="w-full rounded-2xl border border-rose-200 px-4 py-3" />
-
-              <button
-                type="submit"
-                className="w-full rounded-full bg-[#b7c7a5] px-6 py-4 text-lg font-medium text-white transition hover:opacity-90"
-              >
-                Add Product
-              </button>
-            </form>
+            <AddProductForm />
           </div>
 
           <div className="rounded-[32px] border border-rose-200 bg-white p-8 shadow-md">
