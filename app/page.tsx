@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DonationBlob from "@/components/DonationBlob";
 
 export default function Home() {
   return (
@@ -77,6 +78,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <DonationBlob />
     </main>
   );
 }
