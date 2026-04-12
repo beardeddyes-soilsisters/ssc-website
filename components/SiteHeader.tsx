@@ -3,21 +3,41 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getCartCount } from "@/lib/cart";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SiteHeader() {
   const [cartCount, setCartCount] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    const supabase = createClient();
+
     function updateCartCount() {
       setCartCount(getCartCount());
     }
 
+    async function loadUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setIsLoggedIn(!!user);
+    }
+
     updateCartCount();
+    loadUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session?.user);
+    });
 
     window.addEventListener("cartUpdated", updateCartCount);
     window.addEventListener("storage", updateCartCount);
 
     return () => {
+      subscription.unsubscribe();
       window.removeEventListener("cartUpdated", updateCartCount);
       window.removeEventListener("storage", updateCartCount);
     };
@@ -40,9 +60,6 @@ export default function SiteHeader() {
           <Link href="/contact" className="hover:underline">
             Contact
           </Link>
-          <Link href="/account" className="hover:underline">
-            Account
-          </Link>
 
           <Link
             href="/cart"
@@ -54,6 +71,13 @@ export default function SiteHeader() {
                 {cartCount}
               </span>
             )}
+          </Link>
+
+          <Link
+            href={isLoggedIn ? "/account" : "/account/auth"}
+            className="rounded-full border border-rose-200 bg-white px-4 py-2 hover:bg-rose-50"
+          >
+            {isLoggedIn ? "My Account" : "Sign In"}
           </Link>
         </nav>
       </div>
