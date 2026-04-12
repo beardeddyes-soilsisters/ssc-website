@@ -5,6 +5,27 @@ import SiteHeader from "@/components/SiteHeader";
 export const metadata = {
   title: "The Soil Sisters Co",
   description: "Where soil grows beauty and sparklet catches the light.",
+  openGraph: {
+    title: "The Soil Sisters Co",
+    description: "Where soil grows beauty and sparkle catches the light.",
+    url: "https://soilsistersco.com",
+    siteName: "The Soil Sisters Co",
+    images: [
+      {
+        url: "https://soilsistersco.com/soil-sisters-banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The Soil Sisters Co floral plant shop banner",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Soil Sisters Co",
+    description: "Where soil grows beauty and sparkle catches the light.",
+    images: ["https://soilsistersco.com/soil-sisters-banner.jpg"],
+  },
 };
 
 export default function RootLayout({
