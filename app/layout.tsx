@@ -1,10 +1,11 @@
 import "./globals.css";
-import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://soilsistersco.com"),
   title: "The Soil Sisters Co",
-  description: "Where soil grows beauty and sparklet catches the light.",
+  description: "Where soil grows beauty and sparkle catches the light.",
   openGraph: {
     title: "The Soil Sisters Co",
     description: "Where soil grows beauty and sparkle catches the light.",
@@ -12,7 +13,7 @@ export const metadata = {
     siteName: "The Soil Sisters Co",
     images: [
       {
-        url: "https://soilsistersco.com/soil-sisters-banner.jpg",
+        url: "/soil-sisters-banner.jpg",
         width: 1200,
         height: 630,
         alt: "The Soil Sisters Co floral plant shop banner",
@@ -24,7 +25,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "The Soil Sisters Co",
     description: "Where soil grows beauty and sparkle catches the light.",
-    images: ["https://soilsistersco.com/soil-sisters-banner.jpg"],
+    images: ["/soil-sisters-banner.jpg"],
   },
 };
 
@@ -38,9 +39,9 @@ export default function RootLayout({
       <body>
         <SiteHeader />
         {children}
-        
+
         <footer className="border-t border-rose-200 bg-[#fffaf8]">
-          <div className="mx-auto max-w-6x1 px-6 py-8 text-center text-sm text-[#7d6155]">
+          <div className="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-[#7d6155]">
             <p>The Soil Sisters Co.</p>
             <p>Where soil grows beauty and sparkle catches the light!</p>
           </div>
