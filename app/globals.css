@@ -25,6 +25,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.content-wrapper {
+  background: rgba(255, 250, 248, 0.92);
+  backdrop-filter: blur(10px);
+}
+
 .related-scrollbar::-webkit-scrollbar {
   height: 10px;
 }
@@ -51,7 +56,7 @@ body {
 }
 
 .background-floral {
-  background-image: url('/images/floral-bg.png');
+  background-image: url('/floral-bg.png');
   background-size: cover;        /* or 'contain' if you prefer */
   background-position: center;
   background-repeat: no-repeat;  /* or 'repeat' if seamless tiling */
