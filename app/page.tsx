@@ -5,6 +5,38 @@ import HomeGallery from "@/components/HomeGallery";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#fff8f6] text-[#5f4638]">
+      <section className="mx-auto max-w-6xl px-6 pt-12">
+        <div
+          className="overflow-hidden rounded-[36px] border border-rose-200 bg-cover bg-center shadow-lg"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,248,246,0.94), rgba(255,248,246,0.78)), url('/header-img.jpg')",
+          }}
+        >
+          <div className="p-8 md:p-12">
+            <p className="mb-3 inline-block rounded-full bg-rose-100/90 px-4 py-2 text-sm text-[#8a6558]">
+              🌸
+            </p>
+
+            <h2 className="mb-4 text-3xl font-semibold md:text-4xl">
+              Welcome to Soil Sisters Co.
+            </h2>
+
+            <p className="max-w-3xl leading-8 text-[#7a6054]">
+              We are a small, female owned business located in NorthEast
+              Tennessee. We will be featuring locally grown plants, suncatchers,
+              jewelry, t-shirts, and more! We hope you will keep coming back as
+              we are just getting started and will be adding new items
+              regularly.
+            </p>
+
+            <p className="mt-5 text-sm font-medium text-[#8a6558]">
+              Thank you, Brittany & Melissa
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center">
         <div>
           <p className="mb-3 inline-block rounded-full bg-rose-100 px-4 py-2 text-sm text-[#8a6558]">
@@ -45,16 +77,11 @@ export default function Home() {
           <div className="rounded-[24px] bg-gradient-to-b from-rose-50 to-[#fffaf8] p-8">
             <div className="mb-4 text-6xl">🌸🪴✨</div>
             <h2 className="mb-3 text-2xl font-semibold text-[#6b4f43]">
-              Welcome to Soil Sisters Co.
+              Local plants, gifts, and sparkle
             </h2>
             <p className="leading-7 text-[#7a6054]">
-              We are a small, female owned business located in NorthEast
-              Tennessee. We will be featuring locally grown plants, suncatchers,
-              jewelry, t-shirts, and more! We hope you will keep coming back as
-              we are just getting started and will be adding new items regulary.
-            </p>
-            <p className="mt-4 text-sm text-[#8a6558]">
-              Thank you, Brittany & Melissa
+              Browse our growing collection of plants, suncatchers, handmade
+              gifts, seasonal items, and botanical favorites.
             </p>
           </div>
         </div>

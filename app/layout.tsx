@@ -40,10 +40,21 @@ export default function RootLayout({
         <SiteHeader />
         {children}
 
-        <footer className="border-t border-rose-200 bg-[#fffaf8]">
-          <div className="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-[#7d6155]">
-            <p>The Soil Sisters Co.</p>
-            <p>Where soil grows beauty and sparkle catches the light!</p>
+        <footer className="border-t border-rose-200">
+          <div className="relative h-40 w-full overflow-hidden">
+            <img
+              src="/header-img.jpg"
+              alt="The Soil Sisters Co Banner"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-[#fff8f6]/40 to-transparent" />
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center">
+              <p className="text-sm font-medium text-[#5f4638] drop-shadow-sm">
+                Where soil grows beauty and sparkle catches the light ✨
+              </p>
+            </div>
           </div>
         </footer>
       </body>
