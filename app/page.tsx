@@ -19,8 +19,8 @@ export default function Home() {
           </p>
 
           <p className="mb-8 max-w-xl text-base leading-7 text-[#7a6054]">
-            A soft, welcoming plant shop for beautiful greenery, thoughtful gifts,
-            and botanical charm.
+            A soft, welcoming plant shop for beautiful greenery, thoughtful
+            gifts, and botanical charm.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -66,14 +66,20 @@ export default function Home() {
           <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
             <h3 className="mb-2 text-xl font-semibold">Gifts & Bundles</h3>
             <p className="text-[#7a6054]">
-              Beautiful plant gifts with a soft floral brand style.
+              We will be selling gift items and merch that can stand alone or be
+              bundled. There will be t-shirts, magnets, several types of
+              suncatchers to make your happy place sparkle and shine, jewelry
+              and more! Some of our items can be custom made for you.
             </p>
           </div>
 
           <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
             <h3 className="mb-2 text-xl font-semibold">Seasonal Beauty</h3>
             <p className="text-[#7a6054]">
-              Rotating collections, decor, and fresh botanical charm.
+              As we grow, we will be featuring plants and items that will meet
+              your decorating needs. Halloween, Christmas, Easter, Summer,
+              whatever times you like to make your home and garden more festive.
+              Let us know how we can meet your needs and better serve you.
             </p>
           </div>
         </div>
