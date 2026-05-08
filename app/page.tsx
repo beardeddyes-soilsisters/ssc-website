@@ -1,5 +1,6 @@
 import Link from "next/link";
 import DonationBlob from "@/components/DonationBlob";
+import HomeGallery from "@/components/HomeGallery";
 
 export default function Home() {
   return (
@@ -44,11 +45,16 @@ export default function Home() {
           <div className="rounded-[24px] bg-gradient-to-b from-rose-50 to-[#fffaf8] p-8">
             <div className="mb-4 text-6xl">🌸🪴✨</div>
             <h2 className="mb-3 text-2xl font-semibold text-[#6b4f43]">
-              Pastel floral plant shop
+              Welcome to Soil Sisters Co.
             </h2>
             <p className="leading-7 text-[#7a6054]">
-              This space will become your featured products section, seasonal
-              collections, and best sellers.
+              We are a small, female owned business located in NorthEast
+              Tennessee. We will be featuring locally grown plants, suncatchers,
+              jewelry, t-shirts, and more! We hope you will keep coming back as
+              we are just getting started and will be adding new items regulary.
+            </p>
+            <p className="mt-4 text-sm text-[#8a6558]">
+              Thank you, Brittany & Melissa
             </p>
           </div>
         </div>
@@ -57,9 +63,14 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="grid gap-6 md:grid-cols-3">
           <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-2 text-xl font-semibold">Houseplants</h3>
+            <h3 className="mb-2 text-xl font-semibold">
+              Houseplants & Outdoor Plants
+            </h3>
             <p className="text-[#7a6054]">
-              Easy-care favorites and statement greenery for every room.
+              We have Vegetables, Herbs, Flowers and Foliage plants. Just a few
+              examples are Peppers, Lavender, Rosemary, Dahlias, Wandering Dude,
+              and Golden Pothos. We are looking forward to growing our business
+              and meeting you.
             </p>
           </div>
 
@@ -84,6 +95,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HomeGallery />
 
       <DonationBlob />
     </main>

@@ -39,6 +39,57 @@ body {
   border-radius: 999px;
 }
 
+.gallery-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: #f8ece8;
+  border-radius: 999px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: #d7c0b4;
+  border-radius: 999px;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: #f8ece8;
+  border-radius: 999px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: #d7c0b4;
+  border-radius: 999px;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.7) rotate(0deg);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scale(1.15) rotate(18deg);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkleFloat 1.5s ease-in-out infinite;
+}
+
+.animate-sparkle-delay {
+  animation: sparkleFloat 1.8s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+
 @keyframes slideUp {
   from {
     opacity: 0;
