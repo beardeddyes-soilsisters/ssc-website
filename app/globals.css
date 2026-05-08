@@ -19,23 +19,6 @@
   }
 }
 
-body {
-  background-color: #fff8f6;
-  background-image:
-    linear-gradient(
-      to center,
-      rgba(255, 248, 246, 0.96) 20%,
-      rgba(255, 248, 246, 0.82) 45%,
-      rgba(255, 248, 246, 0.7) 60%,
-      rgba(255, 248, 246, 0.45) 100%
-    ),
-    url("/floral-bg.png");
-
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
 
 .content-wrapper {
   background: rgba(255, 250, 248, 0.92);

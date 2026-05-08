@@ -36,9 +36,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="relative overflow-x-hidden">
         <SiteHeader />
         {children}
+        <div className="pointer-events-none fixed inset-0 -z-10">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-fixed opacity-60"
+            style={{
+              backgroundImage: "url('/floral-bg.png')",
+            }}
+          />
+
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at center, rgba(255,248,246,0.95) 35%, rgba(255,248,246,0.72) 100%)",
+            }}
+          />
+        </div>
 
         <footer className="border-t border-rose-200 bg-[#fffaf8]">
           <div className="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-[#7d6155]">
