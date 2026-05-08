@@ -137,14 +137,12 @@ export default function CartPage() {
   );
 
   return (
-    <main className="min-h-screen bg-transparent px-6 py-16 text-[#5f4638]">
+    <main className="min-h-screen bg-[#fff8f6] px-6 py-16 text-[#5f4638]">
       <div className="mx-auto max-w-6xl">
-        <h1 className="mb-8 text-4xl font-semibold drop-shadow-sm">
-          Your Cart
-        </h1>
+        <h1 className="mb-8 text-4xl font-semibold">Your Cart</h1>
 
         {cartItems.length === 0 ? (
-          <div className="rounded-3xl border border-rose-200 bg-white/70 p-8 shadow-xl backdrop-blur-md">
+          <div className="rounded-3xl border border-rose-200 bg-white p-8 shadow-sm">
             <p className="text-lg text-[#7a6054]">Your cart is empty.</p>
           </div>
         ) : (
@@ -153,7 +151,7 @@ export default function CartPage() {
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col gap-4 rounded-3xl border border-rose-200 bg-white/72 p-5 shadow-xl backdrop-blur-md md:flex-row"
+                  className="flex flex-col gap-4 rounded-3xl border border-rose-200 bg-white p-5 shadow-sm md:flex-row"
                 >
                   <img
                     src={item.image}
@@ -163,15 +161,12 @@ export default function CartPage() {
 
                   <div className="flex-1">
                     <h2 className="text-2xl font-semibold">{item.name}</h2>
-
                     <p className="mb-2 text-sm text-[#8a6558]">
                       {item.category}
                     </p>
-
                     <p className="mb-4 text-sm text-[#7a6054]">
                       {item.description}
                     </p>
-
                     <p className="font-medium">${item.price.toFixed(2)} each</p>
                   </div>
 
@@ -179,18 +174,16 @@ export default function CartPage() {
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() => updateQuantity(item.id, -1)}
-                        className="h-9 w-9 rounded-full border border-rose-200 bg-white/80 backdrop-blur-sm"
+                        className="h-9 w-9 rounded-full border border-rose-200 bg-white"
                       >
                         -
                       </button>
-
                       <span className="min-w-[24px] text-center">
                         {item.quantity}
                       </span>
-
                       <button
                         onClick={() => updateQuantity(item.id, 1)}
-                        className="h-9 w-9 rounded-full border border-rose-200 bg-white/80 backdrop-blur-sm"
+                        className="h-9 w-9 rounded-full border border-rose-200 bg-white"
                       >
                         +
                       </button>
@@ -208,21 +201,19 @@ export default function CartPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-3xl border border-rose-200 bg-white/72 p-6 shadow-xl backdrop-blur-md">
+              <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
                 <h2 className="mb-4 text-2xl font-semibold">Order Summary</h2>
-
                 <div className="mb-4 flex justify-between text-lg">
                   <span>Total</span>
                   <span>${total.toFixed(2)}</span>
                 </div>
-
                 <p className="text-sm text-[#7a6054]">
                   No payment is taken online right now. This reserves your items
                   for local pickup.
                 </p>
               </div>
 
-              <div className="rounded-3xl border border-rose-200 bg-white/72 p-6 shadow-xl backdrop-blur-md">
+              <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
                 <h2 className="mb-4 text-2xl font-semibold">
                   Reserve for Pickup
                 </h2>
@@ -233,38 +224,35 @@ export default function CartPage() {
                     placeholder="Your name"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full rounded-2xl border border-rose-200 bg-white/80 px-4 py-3 backdrop-blur-sm"
+                    className="w-full rounded-2xl border border-rose-200 px-4 py-3"
                   />
-
                   <input
                     type="email"
                     placeholder="Your email"
                     value={customerEmail}
                     onChange={(e) => setCustomerEmail(e.target.value)}
-                    className="w-full rounded-2xl border border-rose-200 bg-white/80 px-4 py-3 backdrop-blur-sm"
+                    className="w-full rounded-2xl border border-rose-200 px-4 py-3"
                   />
-
                   <input
                     type="tel"
                     placeholder="Your phone number"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full rounded-2xl border border-rose-200 bg-white/80 px-4 py-3 backdrop-blur-sm"
+                    className="w-full rounded-2xl border border-rose-200 px-4 py-3"
                   />
-
                   <textarea
                     placeholder="Pickup notes (optional)"
                     value={pickupNotes}
                     onChange={(e) => setPickupNotes(e.target.value)}
                     rows={4}
-                    className="w-full rounded-2xl border border-rose-200 bg-white/80 px-4 py-3 backdrop-blur-sm"
+                    className="w-full rounded-2xl border border-rose-200 px-4 py-3"
                   />
                 </div>
 
                 <button
                   onClick={handleReserve}
                   disabled={submitting}
-                  className="mt-5 w-full rounded-full bg-[#b7c7a5] px-5 py-3 font-medium text-white shadow-lg transition hover:opacity-90 disabled:opacity-60"
+                  className="mt-5 w-full rounded-full bg-[#b7c7a5] px-5 py-3 font-medium text-white transition hover:opacity-90 disabled:opacity-60"
                 >
                   {submitting ? "Reserving..." : "Reserve for Pickup"}
                 </button>
@@ -273,10 +261,10 @@ export default function CartPage() {
                   <div
                     className={`mt-4 rounded-2xl px-4 py-3 text-center ${
                       statusType === "success"
-                        ? "border border-green-200 bg-green-50/90 text-[#4f6b46]"
+                        ? "border border-green-200 bg-green-50 text-[#4f6b46]"
                         : statusType === "warning"
-                        ? "border border-yellow-200 bg-yellow-50/90 text-[#7a5d1a]"
-                        : "border border-red-200 bg-red-50/90 text-[#8b3a3a]"
+                        ? "border border-yellow-200 bg-yellow-50 text-[#7a5d1a]"
+                        : "border border-red-200 bg-red-50 text-[#8b3a3a]"
                     }`}
                   >
                     {statusMessage}

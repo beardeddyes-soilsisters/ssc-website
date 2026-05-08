@@ -36,12 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="overflow-x-hidden">
+      <body>
         <SiteHeader />
+        {children}
 
-        <main>{children}</main>
-
-        <footer className="border-t border-rose-200 bg-[#fffaf8]/70 backdrop-blur-sm">
+        <footer className="border-t border-rose-200 bg-[#fffaf8]">
           <div className="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-[#7d6155]">
             <p>The Soil Sisters Co.</p>
             <p>Where soil grows beauty and sparkle catches the light!</p>
