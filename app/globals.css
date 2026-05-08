@@ -20,9 +20,21 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff8f6;
+  background-image:
+    linear-gradient(
+      to center,
+      rgba(255, 248, 246, 0.96) 20%,
+      rgba(255, 248, 246, 0.82) 45%,
+      rgba(255, 248, 246, 0.7) 60%,
+      rgba(255, 248, 246, 0.45) 100%
+    ),
+    url("/floral-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .content-wrapper {
@@ -53,13 +65,4 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-.background-floral {
-  background-image: url('/floral-bg.png');
-  background-size: cover;        /* or 'contain' if you prefer */
-  background-position: center;
-  background-repeat: no-repeat;  /* or 'repeat' if seamless tiling */
-  background-attachment: fixed;  /* optional: stays while scrolling */
-  min-height: 100vh;
 }
