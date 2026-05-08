@@ -25,13 +25,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        full_name,
-        phone,
-      })
-      .eq("id", user.id);
+    const { error } = await supabase.from("profiles").upsert({
+      id: user.id,
+      full_name,
+      phone,
+    });
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

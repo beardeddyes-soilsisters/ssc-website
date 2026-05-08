@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     const slug = String(formData.get("slug") || "").trim();
     const name = String(formData.get("name") || "").trim();
     const price = Number(formData.get("price") || 0);
+    const stock_quantity = Number(formData.get("stock_quantity") || 0);
     const category = String(formData.get("category") || "").trim();
     const image = String(formData.get("image") || "").trim();
     const oldImage = String(formData.get("old_image") || "").trim();
@@ -57,6 +58,7 @@ export async function POST(request: Request) {
         slug,
         name,
         price,
+        stock_quantity,
         category,
         image,
         description,

@@ -20,7 +20,12 @@ export async function POST(request: Request) {
     const pickup_notes = String(body.pickup_notes || "").trim();
     const items = Array.isArray(body.items) ? body.items : [];
 
-    if (!customer_name || !customer_email || !customer_phone || items.length === 0) {
+    if (
+      !customer_name ||
+      !customer_email ||
+      !customer_phone ||
+      items.length === 0
+    ) {
       return NextResponse.json(
         { error: "Missing customer information or cart items." },
         { status: 400 }
@@ -55,6 +60,7 @@ export async function POST(request: Request) {
       product_id: item.id,
       product_name: item.name,
       product_slug: item.slug,
+      product_image: item.image ?? null,
       price: Number(item.price),
       quantity: Number(item.quantity),
     }));
@@ -63,21 +69,54 @@ export async function POST(request: Request) {
       .from("order_items")
       .insert(orderItems);
 
-      if (itemsError) {
-        console.error("Order items insert error:", itemsError);
-      
-        await supabase.from("orders").delete().eq("id", order.id);
-      
-        return NextResponse.json(
-          { error: "Could not save reservation items." },
-          { status: 500 }
-        );
+    if (itemsError) {
+      console.error("Order items insert error:", itemsError);
+
+      await supabase.from("orders").delete().eq("id", order.id);
+
+      return NextResponse.json(
+        { error: "Could not save reservation items." },
+        { status: 500 }
+      );
+    }
+
+    // Subtract stock using slug
+    for (const item of items) {
+      const slug = String(item.slug || "").trim();
+      const quantity = Number(item.quantity || 0);
+
+      if (!slug || quantity <= 0) continue;
+
+      const { data: product, error: productError } = await supabase
+        .from("products")
+        .select("id, stock_quantity")
+        .eq("slug", slug)
+        .single();
+
+      if (productError || !product) {
+        console.error("Stock lookup error:", productError, slug);
+        continue;
       }
+
+      const currentStock = Number(product.stock_quantity || 0);
+      const newStock = Math.max(0, currentStock - quantity);
+
+      const { error: stockError } = await supabase
+        .from("products")
+        .update({ stock_quantity: newStock })
+        .eq("id", product.id);
+
+      if (stockError) {
+        console.error("Stock update error:", stockError, slug);
+      }
+    }
 
     const itemLines = items
       .map(
         (item: any) =>
-          `<li>${escapeHtml(item.name)} × ${item.quantity} — $${Number(item.price).toFixed(2)}</li>`
+          `<li>${escapeHtml(item.name)} × ${item.quantity} — $${Number(
+            item.price
+          ).toFixed(2)}</li>`
       )
       .join("");
 
@@ -91,7 +130,9 @@ export async function POST(request: Request) {
         <p><strong>Name:</strong> ${escapeHtml(customer_name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(customer_email)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(customer_phone)}</p>
-        <p><strong>Pickup Notes:</strong> ${escapeHtml(pickup_notes || "None")}</p>
+        <p><strong>Pickup Notes:</strong> ${escapeHtml(
+          pickup_notes || "None"
+        )}</p>
         <p><strong>Order ID:</strong> #${order.id}</p>
         <p><strong>Signed In Account:</strong> ${user ? "Yes" : "No"}</p>
         <h3>Reserved Items</h3>

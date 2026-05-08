@@ -10,6 +10,7 @@ type Product = {
   slug: string;
   name: string;
   price: number;
+  stock_quantity: number;
   category: string;
   image: string;
   description: string;
@@ -149,6 +150,12 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               ${Number(product.price).toFixed(2)}
             </p>
 
+            <p className="mb-4 text-sm font-medium text-[#8a6558]">
+              {product.stock_quantity > 0
+                ? `${product.stock_quantity} available for local pickup`
+                : "Currently sold out"}
+            </p>
+
             <p className="mb-6 leading-7 text-[#7a6054]">
               {product.long_description}
             </p>
@@ -182,7 +189,9 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                 </span>
 
                 <button
-                  onClick={() => setQuantity((q) => q + 1)}
+                  onClick={() =>
+                    setQuantity((q) => Math.min(product.stock_quantity, q + 1))
+                  }
                   className="h-10 w-10 rounded-full border border-rose-200 bg-white"
                 >
                   +
@@ -192,9 +201,14 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
             <button
               onClick={handleAddToCart}
-              className="w-full rounded-full bg-[#b7c7a5] px-6 py-4 text-lg font-medium text-white transition hover:opacity-90"
+              disabled={product.stock_quantity <= 0}
+              className={`w-full rounded-full px-6 py-4 text-lg font-medium text-white transition ${
+                product.stock_quantity > 0
+                  ? "bg-[#b7c7a5] hover:opacity-90"
+                  : "cursor-not-allowed bg-gray-300"
+              }`}
             >
-              Add to Cart
+              {product.stock_quantity > 0 ? "Add to Cart" : "Sold Out"}
             </button>
 
             {message && (
@@ -206,68 +220,70 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
         </div>
 
         {relatedProducts.length > 0 && (
-  <section className="mt-4">
-    <div className="mb-6 flex items-end justify-between gap-4">
-      <div>
-        <p className="mb-2 inline-block rounded-full bg-rose-100 px-4 py-2 text-sm text-[#8a6558]">
-          You may also like
-        </p>
-        <h2 className="text-3xl font-semibold">More botanical favorites</h2>
-        <p className="mt-2 text-[#7a6054]">
-          More lovely finds from the shop.
-        </p>
-      </div>
-    </div>
-
-    <div className="relative">
-    <div className="related-scrollbar flex gap-6 overflow-x-auto pb-4 pr-2 scroll-smooth">
-        {relatedProducts.map((item) => (
-          <div
-            key={item.id}
-            className="min-w-[280px] max-w-[280px] flex-shrink-0 overflow-hidden rounded-[28px] border border-rose-200 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
-          >
-            <Link href={`/product/${item.slug}`}>
-              <img
-                src={item.image}
-                alt={item.name}
-                className="h-56 w-full object-cover"
-              />
-            </Link>
-
-            <div className="p-6">
-              <p className="mb-2 inline-block rounded-full bg-[#f8e7ec] px-3 py-1 text-sm text-[#8a6558]">
-                {item.category}
-              </p>
-
-              <Link href={`/product/${item.slug}`}>
-                <h3 className="mb-2 text-2xl font-semibold hover:underline">
-                  {item.name}
-                </h3>
-              </Link>
-
-              <p className="mb-4 text-sm leading-6 text-[#7a6054]">
-                {item.description}
-              </p>
-
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-semibold">
-                  ${Number(item.price).toFixed(2)}
-                </span>
-
-                <Link
-                  href={`/product/${item.slug}`}
-                  className="rounded-full bg-[#b7c7a5] px-5 py-2 font-medium text-white transition hover:opacity-90"
-                >
-                  View
-                </Link>
+          <section className="mt-4">
+            <div className="mb-6 flex items-end justify-between gap-4">
+              <div>
+                <p className="mb-2 inline-block rounded-full bg-rose-100 px-4 py-2 text-sm text-[#8a6558]">
+                  You may also like
+                </p>
+                <h2 className="text-3xl font-semibold">
+                  More botanical favorites
+                </h2>
+                <p className="mt-2 text-[#7a6054]">
+                  More lovely finds from the shop.
+                </p>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
+
+            <div className="relative">
+              <div className="related-scrollbar flex gap-6 overflow-x-auto pb-4 pr-2 scroll-smooth">
+                {relatedProducts.map((item) => (
+                  <div
+                    key={item.id}
+                    className="min-w-[280px] max-w-[280px] flex-shrink-0 overflow-hidden rounded-[28px] border border-rose-200 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <Link href={`/product/${item.slug}`}>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="h-56 w-full object-cover"
+                      />
+                    </Link>
+
+                    <div className="p-6">
+                      <p className="mb-2 inline-block rounded-full bg-[#f8e7ec] px-3 py-1 text-sm text-[#8a6558]">
+                        {item.category}
+                      </p>
+
+                      <Link href={`/product/${item.slug}`}>
+                        <h3 className="mb-2 text-2xl font-semibold hover:underline">
+                          {item.name}
+                        </h3>
+                      </Link>
+
+                      <p className="mb-4 text-sm leading-6 text-[#7a6054]">
+                        {item.description}
+                      </p>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl font-semibold">
+                          ${Number(item.price).toFixed(2)}
+                        </span>
+
+                        <Link
+                          href={`/product/${item.slug}`}
+                          className="rounded-full bg-[#b7c7a5] px-5 py-2 font-medium text-white transition hover:opacity-90"
+                        >
+                          View
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );

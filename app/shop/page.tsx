@@ -9,6 +9,7 @@ type Product = {
   slug: string;
   name: string;
   price: number;
+  stock_quantity: number;
   category: string;
   image: string;
   description: string;
@@ -183,7 +184,9 @@ export default function ShopPage() {
 
             {filteredProducts.length === 0 ? (
               <div className="rounded-[28px] border border-rose-200 bg-white p-10 text-center shadow-sm">
-                <h2 className="mb-2 text-2xl font-semibold">No products found</h2>
+                <h2 className="mb-2 text-2xl font-semibold">
+                  No products found
+                </h2>
                 <p className="text-[#7a6054]">
                   Try a different search or category.
                 </p>
@@ -208,6 +211,12 @@ export default function ShopPage() {
                         {product.category}
                       </p>
 
+                      <p className="mb-4 text-sm text-[#8a6558]">
+                        {product.stock_quantity > 0
+                          ? `${product.stock_quantity} available`
+                          : "Sold out"}
+                      </p>
+
                       <Link href={`/product/${product.slug}`}>
                         <h2 className="mb-2 text-2xl font-semibold hover:underline">
                           {product.name}
@@ -225,9 +234,16 @@ export default function ShopPage() {
 
                         <button
                           onClick={() => handleAddToCart(product)}
-                          className="rounded-full bg-[#b7c7a5] px-5 py-2 font-medium text-white transition hover:opacity-90"
+                          disabled={product.stock_quantity <= 0}
+                          className={`rounded-full px-5 py-2 font-medium text-white transition ${
+                            product.stock_quantity > 0
+                              ? "bg-[#b7c7a5] hover:opacity-90"
+                              : "cursor-not-allowed bg-gray-300"
+                          }`}
                         >
-                          Add to Cart
+                          {product.stock_quantity > 0
+                            ? "Add to Cart"
+                            : "Sold Out"}
                         </button>
                       </div>
                     </div>

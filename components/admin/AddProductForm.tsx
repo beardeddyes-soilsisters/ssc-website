@@ -96,6 +96,15 @@ export default function AddProductForm() {
         className="w-full rounded-2xl border border-rose-200 px-4 py-3"
       />
       <input
+        name="stock_quantity"
+        type="number"
+        min="0"
+        step="1"
+        placeholder="Stock quantity"
+        required
+        className="w-full rounded-2xl border border-rose-200 px-4 py-3"
+      />
+      <input
         name="category"
         placeholder="Category"
         required
@@ -117,7 +126,9 @@ export default function AddProductForm() {
 
       {previewUrl && (
         <div className="overflow-hidden rounded-3xl border border-rose-200 bg-[#fffaf8] p-3">
-          <p className="mb-3 text-sm font-medium text-[#7a6054]">Image preview</p>
+          <p className="mb-3 text-sm font-medium text-[#7a6054]">
+            Image preview
+          </p>
           <div className="relative h-56 w-full overflow-hidden rounded-2xl">
             <Image
               src={previewUrl}

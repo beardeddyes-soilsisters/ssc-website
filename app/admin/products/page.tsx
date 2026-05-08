@@ -122,6 +122,10 @@ export default async function AdminProductsPage({
           {product.category} • {product.slug}
         </p>
 
+        <p className="mb-2 text-sm text-[#8a6558]">
+          Stock: {product.stock_quantity}
+        </p>
+
         <p className="text-[#7a6054]">{product.description}</p>
 
         <div className="mt-4 flex flex-wrap gap-3">

@@ -18,6 +18,7 @@ type OrderItem = {
   id: number;
   order_id: number;
   product_name: string;
+  product_image: string | null;
   quantity: number;
   price: number;
 };
@@ -143,9 +144,7 @@ export default function AccountDashboard({
           <p className="mb-2 inline-block rounded-full bg-rose-100 px-4 py-2 text-sm text-[#8a6558]">
             Customer Account
           </p>
-          <h1 className="text-4xl font-semibold">
-            {fullName || "My Account"}
-          </h1>
+          <h1 className="text-4xl font-semibold">{fullName || "My Account"}</h1>
           <p className="mt-2 text-[#7a6054]">{email}</p>
           <p className="text-[#7a6054]">{phone || "No phone saved"}</p>
         </div>
@@ -173,7 +172,9 @@ export default function AccountDashboard({
 
         <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
           <p className="text-sm text-[#8a6558]">Picked Up</p>
-          <h2 className="mt-2 text-3xl font-semibold">{completedReservations}</h2>
+          <h2 className="mt-2 text-3xl font-semibold">
+            {completedReservations}
+          </h2>
         </div>
       </div>
 
@@ -253,7 +254,8 @@ export default function AccountDashboard({
             );
 
             const canRequestCancel =
-              order.status === "reserved" || order.status === "ready for pickup";
+              order.status === "reserved" ||
+              order.status === "ready for pickup";
 
             return (
               <div
@@ -310,20 +312,37 @@ export default function AccountDashboard({
                       {itemsForOrder.map((item) => (
                         <div
                           key={item.id}
-                          className="flex items-center justify-between border-b border-rose-100 pb-3 last:border-b-0"
+                          className="flex items-center justify-between gap-4 border-b border-rose-100 pb-3 last:border-b-0"
                         >
-                          <div>
-                            <p className="font-medium text-[#5f4638]">
-                              {item.product_name}
-                            </p>
-                            <p className="text-sm text-[#8a6558]">
-                              Quantity: {item.quantity}
-                            </p>
+                          <div className="flex items-center gap-4">
+                            {item.product_image ? (
+                              <img
+                                src={item.product_image}
+                                alt={item.product_name}
+                                className="h-16 w-16 rounded-2xl object-cover border border-rose-200"
+                              />
+                            ) : (
+                              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-rose-200 bg-white text-xs text-[#8a6558]">
+                                No Image
+                              </div>
+                            )}
+
+                            <div>
+                              <p className="font-medium text-[#5f4638]">
+                                {item.product_name}
+                              </p>
+                              <p className="text-sm text-[#8a6558]">
+                                Quantity: {item.quantity}
+                              </p>
+                            </div>
                           </div>
 
                           <div className="text-right">
                             <p className="font-medium text-[#5f4638]">
-                              ${(Number(item.price) * Number(item.quantity)).toFixed(2)}
+                              $
+                              {(
+                                Number(item.price) * Number(item.quantity)
+                              ).toFixed(2)}
                             </p>
                             <p className="text-sm text-[#8a6558]">
                               ${Number(item.price).toFixed(2)} each

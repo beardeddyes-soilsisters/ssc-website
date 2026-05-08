@@ -13,38 +13,40 @@ export default function CartPage() {
   const [pickupNotes, setPickupNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
-  const [statusType, setStatusType] = useState<"success" | "error" | "warning" | "">("");
+  const [statusType, setStatusType] = useState<
+    "success" | "error" | "warning" | ""
+  >("");
   const supabase = createClient();
-  
+
   useEffect(() => {
     setCartItems(getCart());
-  
+
     async function loadUserProfile() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-  
+
       if (!user) return;
-  
+
       if (user.email) {
         setCustomerEmail(user.email);
       }
-  
+
       const { data: profile } = await supabase
         .from("profiles")
         .select("full_name, phone")
         .eq("id", user.id)
         .single();
-  
+
       if (profile?.full_name) {
         setCustomerName(profile.full_name);
       }
-  
+
       if (profile?.phone) {
         setCustomerPhone(profile.phone);
       }
     }
-  
+
     loadUserProfile();
   }, []);
 
@@ -159,8 +161,12 @@ export default function CartPage() {
 
                   <div className="flex-1">
                     <h2 className="text-2xl font-semibold">{item.name}</h2>
-                    <p className="mb-2 text-sm text-[#8a6558]">{item.category}</p>
-                    <p className="mb-4 text-sm text-[#7a6054]">{item.description}</p>
+                    <p className="mb-2 text-sm text-[#8a6558]">
+                      {item.category}
+                    </p>
+                    <p className="mb-4 text-sm text-[#7a6054]">
+                      {item.description}
+                    </p>
                     <p className="font-medium">${item.price.toFixed(2)} each</p>
                   </div>
 
@@ -172,7 +178,9 @@ export default function CartPage() {
                       >
                         -
                       </button>
-                      <span className="min-w-[24px] text-center">{item.quantity}</span>
+                      <span className="min-w-[24px] text-center">
+                        {item.quantity}
+                      </span>
                       <button
                         onClick={() => updateQuantity(item.id, 1)}
                         className="h-9 w-9 rounded-full border border-rose-200 bg-white"
@@ -200,12 +208,15 @@ export default function CartPage() {
                   <span>${total.toFixed(2)}</span>
                 </div>
                 <p className="text-sm text-[#7a6054]">
-                  No payment is taken online right now. This reserves your items for local pickup.
+                  No payment is taken online right now. This reserves your items
+                  for local pickup.
                 </p>
               </div>
 
               <div className="rounded-3xl border border-rose-200 bg-white p-6 shadow-sm">
-                <h2 className="mb-4 text-2xl font-semibold">Reserve for Pickup</h2>
+                <h2 className="mb-4 text-2xl font-semibold">
+                  Reserve for Pickup
+                </h2>
 
                 <div className="space-y-4">
                   <input

@@ -10,12 +10,7 @@ type AdminOrdersPageProps = {
   }>;
 };
 
-const statusOptions = [
-  "reserved",
-  "ready for pickup",
-  "picked up",
-  "canceled",
-];
+const statusOptions = ["reserved", "ready for pickup", "picked up", "canceled"];
 
 export default async function AdminOrdersPage({
   searchParams,
@@ -85,7 +80,9 @@ export default async function AdminOrdersPage({
             <div className="space-y-6">
               {orders.map((order: any) => {
                 const itemsForOrder =
-                  orderItems?.filter((item: any) => item.order_id === order.id) || [];
+                  orderItems?.filter(
+                    (item: any) => item.order_id === order.id
+                  ) || [];
 
                 const total = itemsForOrder.reduce(
                   (sum: number, item: any) =>
@@ -109,7 +106,9 @@ export default async function AdminOrdersPage({
                       </div>
 
                       <div className="text-sm text-[#8a6558]">
-                        <p className="font-medium capitalize">Status: {order.status}</p>
+                        <p className="font-medium capitalize">
+                          Status: {order.status}
+                        </p>
                         <p>{new Date(order.created_at).toLocaleString()}</p>
                       </div>
                     </div>
@@ -119,7 +118,9 @@ export default async function AdminOrdersPage({
                         <p className="text-sm font-semibold text-[#8a6558]">
                           Pickup Notes
                         </p>
-                        <p className="mt-1 text-[#5f4638]">{order.pickup_notes}</p>
+                        <p className="mt-1 text-[#5f4638]">
+                          {order.pickup_notes}
+                        </p>
                       </div>
                     )}
 
@@ -132,14 +133,42 @@ export default async function AdminOrdersPage({
                         {itemsForOrder.map((item: any) => (
                           <div
                             key={item.id}
-                            className="flex items-center justify-between border-b border-rose-100 pb-2 last:border-b-0"
+                            className="flex items-center justify-between gap-4 border-b border-rose-100 pb-3 last:border-b-0"
                           >
-                            <span>
-                              {item.product_name} × {item.quantity}
-                            </span>
-                            <span>
-                              ${(Number(item.price) * Number(item.quantity)).toFixed(2)}
-                            </span>
+                            <div className="flex items-center gap-4">
+                              {item.product_image ? (
+                                <img
+                                  src={item.product_image}
+                                  alt={item.product_name}
+                                  className="h-16 w-16 rounded-2xl border border-rose-200 object-cover"
+                                />
+                              ) : (
+                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-rose-200 bg-white text-xs text-[#8a6558]">
+                                  No Image
+                                </div>
+                              )}
+
+                              <div>
+                                <p className="font-medium text-[#5f4638]">
+                                  {item.product_name}
+                                </p>
+                                <p className="text-sm text-[#8a6558]">
+                                  Quantity: {item.quantity}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="text-right">
+                              <p className="font-medium text-[#5f4638]">
+                                $
+                                {(
+                                  Number(item.price) * Number(item.quantity)
+                                ).toFixed(2)}
+                              </p>
+                              <p className="text-sm text-[#8a6558]">
+                                ${Number(item.price).toFixed(2)} each
+                              </p>
+                            </div>
                           </div>
                         ))}
                       </div>

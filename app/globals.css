@@ -49,3 +49,12 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+.background-floral {
+  background-image: url('/images/floral-bg.png');
+  background-size: cover;        /* or 'contain' if you prefer */
+  background-position: center;
+  background-repeat: no-repeat;  /* or 'repeat' if seamless tiling */
+  background-attachment: fixed;  /* optional: stays while scrolling */
+  min-height: 100vh;
+}

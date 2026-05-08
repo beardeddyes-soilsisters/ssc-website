@@ -36,11 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen bg-[url('/floral-bg.png')] bg-cover bg-center bg-no-repeat bg-fixed">
         <SiteHeader />
         {children}
 
-        <footer className="border-t border-rose-200 bg-[#fffaf8]">
+        <footer className="border-t border-rose-200 bg-[#fffaf8]/95 backdrop-blur-sm">
           <div className="mx-auto max-w-6xl px-6 py-8 text-center text-sm text-[#7d6155]">
             <p>The Soil Sisters Co.</p>
             <p>Where soil grows beauty and sparkle catches the light!</p>

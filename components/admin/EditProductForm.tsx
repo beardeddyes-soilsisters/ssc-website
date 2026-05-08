@@ -8,6 +8,7 @@ type Product = {
   slug: string;
   name: string;
   price: number;
+  stock_quantity: number;
   category: string;
   image: string;
   description: string;
@@ -21,9 +22,7 @@ type EditProductFormProps = {
   product: Product;
 };
 
-export default function EditProductForm({
-  product,
-}: EditProductFormProps) {
+export default function EditProductForm({ product }: EditProductFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState(product.image);
   const [saving, setSaving] = useState(false);
@@ -76,15 +75,15 @@ export default function EditProductForm({
         method: "POST",
         body: formData,
       });
-      
+
       const updateJson = await updateRes.json();
-      
+
       if (!updateRes.ok) {
         setErrorMessage(updateJson.error || "Product update failed.");
         setSaving(false);
         return;
       }
-      
+
       window.location.href = "/admin/products?success=update";
     } catch {
       setErrorMessage("Something went wrong.");
@@ -121,6 +120,17 @@ export default function EditProductForm({
         step="0.01"
         defaultValue={product.price}
         placeholder="Price"
+        required
+        className="w-full rounded-2xl border border-rose-200 px-4 py-3"
+      />
+
+      <input
+        name="stock_quantity"
+        type="number"
+        min="0"
+        step="1"
+        defaultValue={product.stock_quantity}
+        placeholder="Stock quantity"
         required
         className="w-full rounded-2xl border border-rose-200 px-4 py-3"
       />
